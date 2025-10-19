@@ -14,13 +14,18 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 
+
+# REST API endpoint format:
+# https://$CODESPACE_NAME-8000.app.github.dev/api/[component]/
+# Example: https://$CODESPACE_NAME-8000.app.github.dev/api/activities/
+# Do not hard code the $CODESPACE_NAME value, use the environment variable
+
 from django.contrib import admin
 from django.urls import path, include
 from rest_framework import routers
 from octofit_tracker import views
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
-
 
 router = routers.DefaultRouter()
 router.register(r'users', views.UserViewSet)
