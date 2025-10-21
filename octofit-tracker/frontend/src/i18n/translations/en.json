@@ -1,0 +1,88 @@
+{
+  "app": {
+    "title": "Octofit Tracker",
+    "navigation": {
+      "activities": "Activities",
+      "leaderboard": "Leaderboard", 
+      "teams": "Teams",
+      "users": "Users",
+      "workouts": "Workouts",
+      "profile": "Profile"
+    }
+  },
+  "activities": {
+    "title": "Activities",
+    "headers": {
+      "id": "#",
+      "name": "Name",
+      "details": "Details"
+    },
+    "buttons": {
+      "add": "Add Activity"
+    }
+  },
+  "users": {
+    "title": "Users",
+    "headers": {
+      "id": "#",
+      "name": "Name", 
+      "details": "Details"
+    },
+    "buttons": {
+      "add": "Add User"
+    }
+  },
+  "teams": {
+    "title": "Teams",
+    "headers": {
+      "id": "#",
+      "name": "Name",
+      "details": "Details"
+    },
+    "buttons": {
+      "add": "Add Team"
+    }
+  },
+  "leaderboard": {
+    "title": "Leaderboard",
+    "headers": {
+      "id": "#",
+      "name": "Name",
+      "details": "Details"
+    }
+  },
+  "workouts": {
+    "title": "Workouts",
+    "headers": {
+      "id": "#",
+      "name": "Name",
+      "details": "Details"
+    },
+    "buttons": {
+      "add": "Add Workout"
+    }
+  },
+  "profile": {
+    "title": "Profile",
+    "language": {
+      "label": "Language",
+      "english": "English",
+      "german": "German"
+    },
+    "buttons": {
+      "save": "Save",
+      "cancel": "Cancel"
+    },
+    "messages": {
+      "success": "Profile updated successfully",
+      "error": "Error updating profile"
+    }
+  },
+  "common": {
+    "loading": "Loading...",
+    "error": "Error",
+    "success": "Success",
+    "save": "Save",
+    "cancel": "Cancel"
+  }
+}

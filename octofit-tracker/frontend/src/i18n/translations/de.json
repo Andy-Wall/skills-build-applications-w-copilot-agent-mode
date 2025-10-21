@@ -1,0 +1,88 @@
+{
+  "app": {
+    "title": "Octofit Tracker",
+    "navigation": {
+      "activities": "Aktivitäten",
+      "leaderboard": "Bestenliste", 
+      "teams": "Teams",
+      "users": "Benutzer",
+      "workouts": "Workouts",
+      "profile": "Profil"
+    }
+  },
+  "activities": {
+    "title": "Aktivitäten",
+    "headers": {
+      "id": "#",
+      "name": "Name",
+      "details": "Details"
+    },
+    "buttons": {
+      "add": "Aktivität hinzufügen"
+    }
+  },
+  "users": {
+    "title": "Benutzer",
+    "headers": {
+      "id": "#",
+      "name": "Name", 
+      "details": "Details"
+    },
+    "buttons": {
+      "add": "Benutzer hinzufügen"
+    }
+  },
+  "teams": {
+    "title": "Teams",
+    "headers": {
+      "id": "#",
+      "name": "Name",
+      "details": "Details"
+    },
+    "buttons": {
+      "add": "Team hinzufügen"
+    }
+  },
+  "leaderboard": {
+    "title": "Bestenliste",
+    "headers": {
+      "id": "#",
+      "name": "Name",
+      "details": "Details"
+    }
+  },
+  "workouts": {
+    "title": "Workouts",
+    "headers": {
+      "id": "#",
+      "name": "Name",
+      "details": "Details"
+    },
+    "buttons": {
+      "add": "Workout hinzufügen"
+    }
+  },
+  "profile": {
+    "title": "Profil",
+    "language": {
+      "label": "Sprache",
+      "english": "Englisch",
+      "german": "Deutsch"
+    },
+    "buttons": {
+      "save": "Speichern",
+      "cancel": "Abbrechen"
+    },
+    "messages": {
+      "success": "Profil erfolgreich aktualisiert",
+      "error": "Fehler beim Aktualisieren des Profils"
+    }
+  },
+  "common": {
+    "loading": "Wird geladen...",
+    "error": "Fehler",
+    "success": "Erfolg",
+    "save": "Speichern",
+    "cancel": "Abbrechen"
+  }
+}

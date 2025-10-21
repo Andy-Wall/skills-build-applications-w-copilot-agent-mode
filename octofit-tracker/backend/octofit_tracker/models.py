@@ -1,9 +1,19 @@
 from djongo import models
 
 class User(models.Model):
+    LANGUAGE_CHOICES = [
+        ('en', 'English'),
+        ('de', 'German'),
+    ]
+    
     name = models.CharField(max_length=100)
     email = models.EmailField(unique=True)
     team = models.CharField(max_length=50)
+    language_preference = models.CharField(
+        max_length=2,
+        choices=LANGUAGE_CHOICES,
+        default='en'
+    )
     class Meta:
         db_table = 'users'
 
