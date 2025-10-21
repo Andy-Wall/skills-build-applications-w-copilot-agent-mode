@@ -49,6 +49,9 @@
       "id": "#",
       "name": "Name",
       "details": "Details"
+    },
+    "buttons": {
+      "refresh": "Refresh Leaderboard"
     }
   },
   "workouts": {

@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
+import { useTranslation } from '../hooks/useTranslation';
 
 const Users = () => {
+  const { t } = useTranslation();
   const [users, setUsers] = useState([]);
   const codespaceName = process.env.REACT_APP_CODESPACE_NAME;
   const endpoint = codespaceName
@@ -22,13 +24,13 @@ const Users = () => {
     <div>
       <div className="card mb-4">
         <div className="card-body">
-          <h2 className="card-title text-warning mb-3">Users</h2>
+          <h2 className="card-title text-warning mb-3">{t('users.title')}</h2>
           <table className="table table-striped table-bordered">
             <thead className="table-dark">
               <tr>
-                <th scope="col">#</th>
-                <th scope="col">Name</th>
-                <th scope="col">Details</th>
+                <th scope="col">{t('users.headers.id')}</th>
+                <th scope="col">{t('users.headers.name')}</th>
+                <th scope="col">{t('users.headers.details')}</th>
               </tr>
             </thead>
             <tbody>
@@ -41,7 +43,7 @@ const Users = () => {
               ))}
             </tbody>
           </table>
-          <button className="btn btn-warning mt-2">Add User</button>
+          <button className="btn btn-warning mt-2">{t('users.buttons.add')}</button>
         </div>
       </div>
     </div>
