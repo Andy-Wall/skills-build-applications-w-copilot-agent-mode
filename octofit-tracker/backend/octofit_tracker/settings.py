@@ -52,6 +52,7 @@ MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.locale.LocaleMiddleware',  # Add LocaleMiddleware for i18n
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -72,6 +73,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'django.template.context_processors.i18n',  # Add i18n context processor
             ],
         },
     },
@@ -83,12 +85,38 @@ WSGI_APPLICATION = 'octofit_tracker.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
+# MongoDB configuration with djongo
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'djongo',
+        'NAME': 'octofit_tracker',
+        'CLIENT': {
+            'host': os.environ.get('MONGODB_URI', 'mongodb://localhost:27017'),
+            'username': os.environ.get('MONGODB_USERNAME', ''),
+            'password': os.environ.get('MONGODB_PASSWORD', ''),
+            'authSource': os.environ.get('MONGODB_AUTH_SOURCE', 'admin'),
+            'authMechanism': 'SCRAM-SHA-1',
+        }
     }
 }
+
+# Fallback to SQLite if MongoDB is not available (for development/testing)
+try:
+    import pymongo
+    # Test MongoDB connection
+    from pymongo import MongoClient
+    client = MongoClient(os.environ.get('MONGODB_URI', 'mongodb://localhost:27017'))
+    client.server_info()  # Test connection
+    client.close()
+except Exception:
+    # Fall back to SQLite for development
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
+    }
+
 # CORS settings
 CORS_ALLOW_ALL_ORIGINS = True
 CORS_ALLOW_CREDENTIALS = True
@@ -118,11 +146,24 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/4.1/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'en'
+
+LANGUAGES = [
+    ('en', 'English'),
+    ('es', 'Español'),
+    ('fr', 'Français'),
+    ('de', 'Deutsch'),
+    ('zh', '中文'),
+]
+
+LOCALE_PATHS = [
+    BASE_DIR / 'locale',
+]
 
 TIME_ZONE = 'UTC'
 
 USE_I18N = True
+USE_L10N = True
 
 USE_TZ = True
 
@@ -136,3 +177,7 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Session configuration for language persistence
+SESSION_COOKIE_AGE = 86400  # 1 day
+SESSION_SAVE_EVERY_REQUEST = True

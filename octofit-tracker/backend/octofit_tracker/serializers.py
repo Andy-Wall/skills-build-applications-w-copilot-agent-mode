@@ -5,6 +5,13 @@ class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = '__all__'
+    
+    def to_representation(self, instance):
+        """Convert ObjectId fields to strings for JSON serialization"""
+        representation = super().to_representation(instance)
+        if hasattr(instance, 'id') and instance.id:
+            representation['id'] = str(instance.id)
+        return representation
 
 class TeamSerializer(serializers.ModelSerializer):
     class Meta:

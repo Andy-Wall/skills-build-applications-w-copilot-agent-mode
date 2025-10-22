@@ -1,0 +1,29 @@
+# Spanish translations for OctoFit Tracker
+# Copyright (C) 2024 OctoFit Tracker
+# This file is distributed under the same license as the OctoFit Tracker package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: OctoFit Tracker\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "Language preference updated successfully"
+msgstr "Preferencia de idioma actualizada exitosamente"
+
+msgid "Language set successfully"
+msgstr "Idioma configurado exitosamente"
+
+msgid "User not found"
+msgstr "Usuario no encontrado"
+
+msgid "Language parameter is required"
+msgstr "El parámetro de idioma es requerido"
+
+msgid "Invalid language. Valid choices are: {}"
+msgstr "Idioma inválido. Las opciones válidas son: {}"
+
+msgid "An error occurred while updating language preference"
+msgstr "Ocurrió un error al actualizar la preferencia de idioma"

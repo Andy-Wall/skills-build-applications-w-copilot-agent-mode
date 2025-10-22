@@ -4,6 +4,18 @@ class User(models.Model):
     name = models.CharField(max_length=100)
     email = models.EmailField(unique=True)
     team = models.CharField(max_length=50)
+    language_preference = models.CharField(
+        max_length=10,
+        choices=[
+            ('en', 'English'),
+            ('es', 'Español'),
+            ('fr', 'Français'),
+            ('de', 'Deutsch'),
+            ('zh', '中文'),
+        ],
+        default='en',
+        help_text='User preferred language for the interface'
+    )
     class Meta:
         db_table = 'users'
 
