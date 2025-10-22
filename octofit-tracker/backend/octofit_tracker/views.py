@@ -2,6 +2,7 @@ from rest_framework import viewsets, status
 from rest_framework.decorators import api_view, action
 from rest_framework.response import Response
 from django.utils import translation
+from django.utils.translation import gettext as _
 from .models import User, Team, Activity, Leaderboard, Workout
 from .serializers import UserSerializer, TeamSerializer, ActivitySerializer, LeaderboardSerializer, WorkoutSerializer
 
@@ -18,7 +19,7 @@ class UserViewSet(viewsets.ModelViewSet):
             
             if not language:
                 return Response(
-                    {'error': 'Language parameter is required'}, 
+                    {'error': _('Language parameter is required')}, 
                     status=status.HTTP_400_BAD_REQUEST
                 )
             
@@ -26,7 +27,7 @@ class UserViewSet(viewsets.ModelViewSet):
             valid_languages = ['en', 'es', 'fr', 'de', 'zh']
             if language not in valid_languages:
                 return Response(
-                    {'error': f'Invalid language. Valid choices are: {valid_languages}'}, 
+                    {'error': _('Invalid language. Valid choices are: {}').format(valid_languages)}, 
                     status=status.HTTP_400_BAD_REQUEST
                 )
             
@@ -37,19 +38,24 @@ class UserViewSet(viewsets.ModelViewSet):
             translation.activate(language)
             
             return Response({
-                'message': 'Language preference updated successfully',
+                'message': _('Language preference updated successfully'),
                 'user_id': str(user.id) if hasattr(user, 'id') else user.pk,
                 'language': language
             })
             
         except User.DoesNotExist:
             return Response(
-                {'error': 'User not found'}, 
+                {'error': _('User not found')}, 
                 status=status.HTTP_404_NOT_FOUND
             )
         except Exception as e:
+            # Log the actual error for debugging but don't expose to user
+            import logging
+            logger = logging.getLogger(__name__)
+            logger.error(f"Error setting user language preference: {str(e)}")
+            
             return Response(
-                {'error': str(e)}, 
+                {'error': _('An error occurred while updating language preference')}, 
                 status=status.HTTP_500_INTERNAL_SERVER_ERROR
             )
 
@@ -60,7 +66,7 @@ def set_language(request):
     
     if not language:
         return Response(
-            {'error': 'Language parameter is required'}, 
+            {'error': _('Language parameter is required')}, 
             status=status.HTTP_400_BAD_REQUEST
         )
     
@@ -68,7 +74,7 @@ def set_language(request):
     valid_languages = ['en', 'es', 'fr', 'de', 'zh']
     if language not in valid_languages:
         return Response(
-            {'error': f'Invalid language. Valid choices are: {valid_languages}'}, 
+            {'error': _('Invalid language. Valid choices are: {}').format(valid_languages)}, 
             status=status.HTTP_400_BAD_REQUEST
         )
     
@@ -79,7 +85,7 @@ def set_language(request):
     request.session['django_language'] = language
     
     return Response({
-        'message': 'Language set successfully',
+        'message': _('Language set successfully'),
         'language': language
     })
 
